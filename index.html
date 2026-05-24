@@ -73,9 +73,14 @@
     --bone: #F5EFE3;
     --paper: #FBF7EE;
     --paper-2: #F1E9D8;
+    --paper-3: #EDE2C7;
     --gold: #B8924C;
     --gold-deep: #8C6A2E;
     --gold-light: #D9B97A;
+    --gold-foil: #E8C77A;
+    --bronze: #6E4E20;
+    --clay: #A0563B;       /* terracotta accent — premium pop */
+    --moss: #4E5A3A;       /* deep sage accent */
     --line: #E2D7BE;
     --line-soft: #ECE3CB;
     --muted: #5C544A;
@@ -89,13 +94,18 @@
   body {
     font-family: 'Manrope', ui-sans-serif, system-ui;
     background:
-      radial-gradient(1100px 700px at 85% -10%, rgba(184,146,76,0.10), transparent 60%),
-      radial-gradient(900px 600px at -10% 30%, rgba(184,146,76,0.06), transparent 60%),
+      radial-gradient(1200px 800px at 90% -10%, rgba(184,146,76,0.18), transparent 55%),
+      radial-gradient(900px 700px at -10% 20%, rgba(160,86,59,0.05), transparent 60%),
+      radial-gradient(700px 500px at 50% 110%, rgba(184,146,76,0.08), transparent 60%),
       var(--bone);
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+  }
+  /* mobile leaves room for the sticky call bar */
+  @media (max-width: 1023px) {
+    body { padding-bottom: 76px; }
   }
   .font-display { font-family: 'Saira Condensed', 'Oswald', sans-serif; letter-spacing: -0.005em; }
   .font-serif-num { font-family: 'Fraunces', Georgia, serif; font-feature-settings: "tnum","lnum"; }
@@ -301,11 +311,16 @@
 
 <!-- =================== HERO =================== -->
 <section id="top" class="hero-shell relative">
-  <!-- Hero is sized so first-paint sits within 100vh minus header (104px nav+utility). -->
-  <div class="relative max-w-[1320px] mx-auto px-5 lg:px-8 pt-6 lg:pt-8 pb-8 lg:pb-10">
+  <!-- decorative gold halo behind hero -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute -top-32 right-[-20%] w-[780px] h-[780px] rounded-full bg-[radial-gradient(closest-side,rgba(232,199,122,0.28),rgba(232,199,122,0))]"></div>
+    <div class="absolute top-1/2 left-[-30%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(closest-side,rgba(160,86,59,0.10),rgba(160,86,59,0))]"></div>
+  </div>
+
+  <div class="relative max-w-[1380px] mx-auto px-5 lg:px-8 pt-4 lg:pt-5 pb-5 lg:pb-6">
 
     <!-- Top meta row -->
-    <div class="rise d1 flex items-center justify-between text-[11px] tracking-[0.22em] uppercase text-[var(--muted)] mb-5 lg:mb-7">
+    <div class="rise d1 flex items-center justify-between text-[11px] tracking-[0.22em] uppercase text-[var(--muted)] mb-3 lg:mb-5">
       <div class="flex items-center gap-3">
         <span class="inline-block w-6 h-px bg-[var(--gold)]"></span>
         <span>№ 01 — Master Plasterers · Est. Perth</span>
@@ -316,39 +331,43 @@
       </div>
     </div>
 
-    <div class="grid lg:grid-cols-12 gap-7 lg:gap-10 items-end">
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-end">
       <!-- LEFT: copy -->
-      <div class="lg:col-span-7 xl:col-span-7">
-        <h1 class="rise d2 hero-title font-display font-black uppercase text-[clamp(56px,9.2vw,124px)]">
+      <div class="lg:col-span-8 xl:col-span-8">
+        <h1 class="rise d2 hero-title font-display font-black uppercase text-[clamp(60px,10.5vw,128px)]">
           A finish<br/>
           <span class="inline-block relative">
-            built to <em>last.</em>
+            built to <span class="text-[var(--gold-deep)]">last.</span>
             <!-- gold underline accent -->
-            <svg class="absolute -bottom-2 left-0 w-[68%] h-2 opacity-90" viewBox="0 0 300 8" preserveAspectRatio="none" fill="none">
-              <path d="M2 6 C 60 1, 140 1, 298 5" stroke="#B8924C" stroke-width="2.4" stroke-linecap="round"/>
+            <svg class="absolute -bottom-2 left-0 w-[70%] h-2.5 opacity-95" viewBox="0 0 300 8" preserveAspectRatio="none" fill="none">
+              <path d="M2 6 C 60 1, 140 1, 298 5" stroke="url(#goldgrad)" stroke-width="3" stroke-linecap="round"/>
+              <defs><linearGradient id="goldgrad" x1="0" x2="1"><stop offset="0" stop-color="#D9B97A"/><stop offset="0.5" stop-color="#B8924C"/><stop offset="1" stop-color="#8C6A2E"/></linearGradient></defs>
             </svg>
           </span>
         </h1>
 
-        <p class="rise d3 mt-6 lg:mt-7 max-w-[560px] text-[15px] lg:text-[17px] leading-[1.65] text-[var(--muted)]">
+        <p class="rise d3 mt-4 lg:mt-5 max-w-[580px] text-[15px] lg:text-[17px] leading-[1.6] text-[var(--muted)]">
           Perth's specialist plasterers and renderers. Internal &amp; external, skim coat, solid render, repairs — by a small team that turns up on time and leaves your home cleaner than they found it.
         </p>
 
-        <div class="rise d4 mt-7 lg:mt-8 flex flex-wrap items-center gap-3">
-          <a href="#enquire" class="btn-gold rounded-full px-7 py-3.5 text-[13px] font-bold tracking-[0.14em] uppercase">Get a Free Quote</a>
-          <a href="tel:+61422945207" class="btn-ghost rounded-full px-6 py-3.5 text-[13px] font-bold tracking-[0.14em] uppercase inline-flex items-center gap-2">
+        <div class="rise d4 mt-5 lg:mt-6 flex items-stretch gap-3">
+          <a href="#enquire" class="btn-gold rounded-full px-5 sm:px-7 py-3 sm:py-3.5 text-[12px] sm:text-[13px] font-bold tracking-[0.14em] uppercase whitespace-nowrap flex-1 sm:flex-none inline-flex items-center justify-center">
+            Get a Free Quote
+          </a>
+          <a href="tel:+61422945207" class="btn-ghost rounded-full px-5 sm:px-6 py-3 sm:py-3.5 text-[12px] sm:text-[13px] font-bold tracking-[0.14em] uppercase inline-flex items-center justify-center gap-2 whitespace-nowrap flex-1 sm:flex-none">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
-            0422 945 207
+            <span class="hidden sm:inline">0422 945 207</span>
+            <span class="sm:hidden">Call Nick</span>
           </a>
         </div>
 
         <!-- Trust band -->
-        <div class="rise d5 mt-8 lg:mt-10 pt-5 border-t border-[var(--line)] grid grid-cols-3 gap-4 max-w-[560px]">
+        <div class="rise d5 mt-6 lg:mt-7 pt-4 border-t border-[var(--line)] grid grid-cols-3 gap-4 max-w-[600px]">
           <div>
             <div class="flex items-center gap-1.5">
               <!-- google G -->
               <svg width="14" height="14" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-              <span class="text-[12px] font-semibold">4.9</span>
+              <span class="text-[13px] font-semibold">4.9</span>
               <span class="text-[var(--google-yellow)] flex">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.75l-6 5.852L19.336 24 12 19.897 4.664 24 6 15.602 0 9.75l8.332-1.732z"/></svg>
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L24 9.75l-6 5.852L19.336 24 12 19.897 4.664 24 6 15.602 0 9.75l8.332-1.732z"/></svg>
@@ -360,49 +379,62 @@
             <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--muted)] mt-1.5">48 Google Reviews</div>
           </div>
           <div>
-            <div class="font-serif-num text-[20px] leading-none">15<span class="text-[var(--gold)]">+</span></div>
+            <div class="font-serif-num text-[22px] leading-none">15<span class="text-[var(--gold)]">+</span></div>
             <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--muted)] mt-1.5">Years on the tools</div>
           </div>
           <div>
-            <div class="font-serif-num text-[20px] leading-none">600<span class="text-[var(--gold)]">+</span></div>
+            <div class="font-serif-num text-[22px] leading-none">600<span class="text-[var(--gold)]">+</span></div>
             <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--muted)] mt-1.5">Homes finished</div>
           </div>
         </div>
       </div>
 
       <!-- RIGHT: image stack -->
-      <div class="lg:col-span-5 xl:col-span-5 relative">
+      <div class="lg:col-span-4 xl:col-span-4 relative">
         <div class="rise d3 relative">
-          <div class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/5] lg:aspect-[5/6.2] relative">
-            <img src="assets/2025-12-02%20(1).webp" alt="A two-story Perth home finished by Real Plastering" loading="eager" />
+          <!-- gold offset frame behind image -->
+          <div class="absolute inset-0 translate-x-3 translate-y-3 lg:translate-x-4 lg:translate-y-4 rounded-[6px] border border-[var(--gold)] opacity-70 pointer-events-none" aria-hidden="true"></div>
+
+          <div class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/4.6] sm:aspect-[4/5] lg:aspect-[5/6] relative shadow-[0_40px_80px_-40px_rgba(11,11,12,0.55),0_18px_30px_-18px_rgba(140,106,46,0.45)]">
+            <img src="assets/2020-11-10.webp" alt="A modern Perth two-story home rendered by Real Plastering" loading="eager" />
             <!-- floating tag -->
-            <div class="absolute top-4 left-4 bg-[var(--paper)]/95 backdrop-blur-sm border border-[var(--line)] rounded-full px-3 py-1.5 text-[10px] tracking-[0.22em] uppercase text-[var(--ink)]">
-              Project · Cockburn WA
+            <div class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-[var(--paper)]/95 backdrop-blur-sm border border-[var(--line)] rounded-full px-3 py-1.5 text-[10px] tracking-[0.22em] uppercase text-[var(--ink)]">
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--clay)] mr-1.5 align-middle"></span>
+              Project · Perth Metro
             </div>
             <!-- bottom credential -->
-            <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-end justify-between">
               <div class="text-[var(--paper)]">
-                <div class="font-display font-bold uppercase text-[15px] tracking-[0.08em] leading-none">Solid Render</div>
-                <div class="text-[10px] tracking-[0.22em] uppercase opacity-80 mt-1">Full external · 2025</div>
+                <div class="font-display font-bold uppercase text-[14px] sm:text-[15px] tracking-[0.08em] leading-none">Solid Render</div>
+                <div class="text-[10px] tracking-[0.22em] uppercase opacity-80 mt-1">Full external · New build</div>
               </div>
-              <div class="w-9 h-9 rounded-full bg-[var(--gold)] text-[var(--ink)] flex items-center justify-center">
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[var(--gold)] text-[var(--ink)] flex items-center justify-center shadow-[0_8px_20px_-8px_rgba(184,146,76,0.7)]">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </div>
             </div>
           </div>
 
-          <!-- secondary stamped image overlap -->
-          <div class="hidden md:block absolute -left-10 lg:-left-14 -bottom-10 w-[180px] lg:w-[210px] aspect-[4/5] img-frame rounded-[4px] img-wrap img-overlay rise d5">
+          <!-- Nick skim-coat photo overlap — visible mobile + desktop -->
+          <div class="absolute -left-3 -bottom-6 sm:-left-6 sm:-bottom-8 lg:-left-12 lg:-bottom-10 w-[110px] sm:w-[150px] lg:w-[200px] aspect-[4/5] img-frame rounded-[4px] img-wrap img-overlay rise d5 shadow-[0_24px_40px_-24px_rgba(11,11,12,0.55)]">
             <img src="assets/unnamed.webp" alt="Nick skim-coating a wall" />
-            <div class="absolute top-2 left-2 text-[9px] tracking-[0.22em] uppercase text-[var(--paper)]">Skim Coat · Nick</div>
+            <div class="absolute top-1.5 left-2 sm:top-2 sm:left-2 text-[8px] sm:text-[9px] tracking-[0.22em] uppercase text-[var(--paper)]">Skim Coat · Nick</div>
           </div>
 
-          <!-- gold seal -->
-          <div class="absolute -top-5 -right-5 lg:-top-7 lg:-right-7 w-[96px] h-[96px] rounded-full bg-[var(--ink)] text-[var(--gold-light)] flex items-center justify-center border-[3px] border-[var(--bone)] shadow-[0_18px_30px_-12px_rgba(11,11,12,0.45)]">
+          <!-- gold seal — larger, more presence -->
+          <div class="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 lg:-top-8 lg:-right-8 w-[88px] sm:w-[100px] lg:w-[120px] aspect-square rounded-full bg-[var(--ink)] text-[var(--gold-light)] flex items-center justify-center border-[3px] border-[var(--bone)] shadow-[0_22px_36px_-14px_rgba(11,11,12,0.5)]">
             <div class="text-center leading-tight">
-              <div class="font-display text-[24px] font-black">4.9</div>
-              <div class="text-[9px] tracking-[0.18em] uppercase opacity-90">★★★★★</div>
-              <div class="text-[8px] tracking-[0.22em] uppercase opacity-70 mt-0.5">Google</div>
+              <div class="font-display text-[22px] sm:text-[26px] lg:text-[32px] font-black">4.9</div>
+              <div class="text-[8px] sm:text-[9px] lg:text-[10px] tracking-[0.18em] uppercase opacity-90 mt-0.5">★★★★★</div>
+              <div class="text-[7px] sm:text-[8px] tracking-[0.22em] uppercase opacity-70 mt-0.5">Google</div>
+            </div>
+          </div>
+
+          <!-- EST. flag — desktop only — adds premium accent -->
+          <div class="hidden lg:flex absolute -right-4 bottom-12 w-[60px] flex-col items-center text-[var(--ink)]">
+            <div class="w-px h-10 bg-[var(--gold-deep)]"></div>
+            <div class="w-[60px] h-[60px] rounded-full bg-[var(--clay)] text-[var(--paper)] flex flex-col items-center justify-center leading-tight shadow-[0_18px_30px_-12px_rgba(160,86,59,0.55)]">
+              <div class="font-display font-black text-[10px] tracking-[0.16em]">EST.</div>
+              <div class="font-display font-black text-[18px]">2010</div>
             </div>
           </div>
         </div>
@@ -437,12 +469,15 @@
 
 <!-- =================== SERVICES =================== -->
 <section id="services" class="relative py-20 lg:py-28">
-  <div class="max-w-[1320px] mx-auto px-5 lg:px-8">
+  <!-- subtle warm overlay -->
+  <div class="absolute inset-0 pointer-events-none bg-[linear-gradient(180deg,transparent,rgba(184,146,76,0.04)_30%,transparent)]" aria-hidden="true"></div>
+  <div class="relative max-w-[1320px] mx-auto px-5 lg:px-8">
     <div class="grid lg:grid-cols-12 gap-10 mb-12 lg:mb-16">
       <div class="lg:col-span-5">
         <div class="text-[11px] tracking-[0.28em] uppercase text-[var(--muted)] flex items-center gap-3">
           <span class="sec-num text-[14px]">02 / 06</span>
           <span class="w-10 h-px bg-[var(--gold)]"></span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--clay)]"></span>
           Trade Services
         </div>
         <h2 class="font-display font-black uppercase text-[44px] lg:text-[64px] leading-[0.95] mt-4">
@@ -568,11 +603,11 @@
     <div class="grid lg:grid-cols-12 gap-6 items-stretch">
       <div class="lg:col-span-7">
         <div class="img-wrap img-overlay img-frame rounded-[6px] aspect-[16/10] relative">
-          <img src="assets/2020-11-10.webp" alt="Modern Perth home — full external render by Real Plastering" />
+          <img src="assets/2025-12-02%20(1).webp" alt="Modern Perth home — full external render by Real Plastering" />
           <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between text-[var(--paper)]">
             <div>
-              <div class="text-[10px] tracking-[0.22em] uppercase opacity-80">Featured Build · 2020</div>
-              <div class="font-display font-bold uppercase text-[28px] lg:text-[34px] leading-none mt-1.5">Hillside Residence — Full External Render</div>
+              <div class="text-[10px] tracking-[0.22em] uppercase opacity-80">Featured Build · Cockburn</div>
+              <div class="font-display font-bold uppercase text-[28px] lg:text-[34px] leading-none mt-1.5">Coastal Two-Story — Full External Render</div>
             </div>
             <div class="hidden md:flex items-center gap-2 text-[11px] tracking-[0.22em] uppercase">
               View Project
@@ -600,7 +635,10 @@
 <!-- =================== STATS BAND =================== -->
 <section class="relative mt-20 lg:mt-28 mb-20 lg:mb-28">
   <div class="max-w-[1320px] mx-auto px-5 lg:px-8">
-    <div class="bg-[var(--ink)] text-[var(--paper)] rounded-[8px] relative overflow-hidden grain">
+    <div class="bg-[var(--ink)] text-[var(--paper)] rounded-[8px] relative overflow-hidden grain border border-[var(--gold)]/30 shadow-[0_30px_60px_-30px_rgba(11,11,12,0.5),0_0_0_1px_rgba(184,146,76,0.2)_inset]">
+    <!-- gold accent rules -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent opacity-60"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent opacity-40"></div>
       <div class="relative grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[var(--paper)]/12">
         <div class="p-8 lg:p-10">
           <div class="font-display font-black text-[var(--gold-light)] text-[64px] lg:text-[84px] leading-none">4.9<span class="text-[var(--gold)]">★</span></div>
@@ -631,6 +669,7 @@
         <div class="text-[11px] tracking-[0.28em] uppercase text-[var(--muted)] flex items-center gap-3">
           <span class="sec-num text-[14px]">03 / 06</span>
           <span class="w-10 h-px bg-[var(--gold)]"></span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--clay)]"></span>
           How we work
         </div>
         <h2 class="font-display font-black uppercase text-[44px] lg:text-[64px] leading-[0.95] mt-4 max-w-[680px]">
@@ -644,22 +683,26 @@
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)]">
+      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_18px_30px_-24px_rgba(140,106,46,0.25)] hover:border-[var(--gold)]/50 transition-colors">
+        <div class="absolute top-0 left-7 right-7 h-px bg-gradient-to-r from-transparent via-[var(--gold)]/40 to-transparent"></div>
         <div class="font-serif-num text-[var(--gold)] text-[52px] leading-none">01</div>
         <h3 class="font-display font-bold uppercase text-[22px] mt-4">On-site Quote</h3>
         <p class="text-[14px] text-[var(--muted)] mt-2 leading-[1.65]">Nick comes out, measures up, and gives you a fixed written quote — no vague verbal guesses.</p>
       </div>
-      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)]">
+      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_18px_30px_-24px_rgba(140,106,46,0.25)] hover:border-[var(--gold)]/50 transition-colors">
+        <div class="absolute top-0 left-7 right-7 h-px bg-gradient-to-r from-transparent via-[var(--gold)]/40 to-transparent"></div>
         <div class="font-serif-num text-[var(--gold)] text-[52px] leading-none">02</div>
         <h3 class="font-display font-bold uppercase text-[22px] mt-4">Prep &amp; Protect</h3>
         <p class="text-[14px] text-[var(--muted)] mt-2 leading-[1.65]">Floors covered, fixtures masked, edges set. Prep is half the finish — we don't skip it.</p>
       </div>
-      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)]">
+      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_18px_30px_-24px_rgba(140,106,46,0.25)] hover:border-[var(--gold)]/50 transition-colors">
+        <div class="absolute top-0 left-7 right-7 h-px bg-gradient-to-r from-transparent via-[var(--gold)]/40 to-transparent"></div>
         <div class="font-serif-num text-[var(--gold)] text-[52px] leading-none">03</div>
         <h3 class="font-display font-bold uppercase text-[22px] mt-4">Apply</h3>
         <p class="text-[14px] text-[var(--muted)] mt-2 leading-[1.65]">Hand-applied by tradesmen who've spent fifteen years getting it right. Tight tolerances, true edges.</p>
       </div>
-      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)]">
+      <div class="relative p-7 border border-[var(--line)] rounded-[6px] bg-[var(--paper)] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_18px_30px_-24px_rgba(140,106,46,0.25)] hover:border-[var(--gold)]/50 transition-colors">
+        <div class="absolute top-0 left-7 right-7 h-px bg-gradient-to-r from-transparent via-[var(--gold)]/40 to-transparent"></div>
         <div class="font-serif-num text-[var(--gold)] text-[52px] leading-none">04</div>
         <h3 class="font-display font-bold uppercase text-[22px] mt-4">Clean Hand-over</h3>
         <p class="text-[14px] text-[var(--muted)] mt-2 leading-[1.65]">Rubbish out, area swept, walls signed off with you on-site. Paint-ready, ready to live in.</p>
@@ -676,6 +719,7 @@
         <div class="text-[11px] tracking-[0.28em] uppercase text-[var(--muted)] flex items-center gap-3">
           <span class="sec-num text-[14px]">04 / 06</span>
           <span class="w-10 h-px bg-[var(--gold)]"></span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--clay)]"></span>
           Recent Projects
         </div>
         <h2 class="font-display font-black uppercase text-[44px] lg:text-[64px] leading-[0.95] mt-4">
@@ -689,38 +733,49 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-12 grid-rows-2 gap-4 lg:gap-5 auto-rows-[180px] lg:auto-rows-[220px]">
-      <div class="col-span-12 md:col-span-8 row-span-2 img-wrap img-overlay img-frame rounded-[6px] relative">
-        <img src="assets/702611497_1278457317605620_1977291623906357760_n.jpg" alt="Two-story residence rendered by Real Plastering" />
-        <div class="absolute top-4 left-4 px-3 py-1.5 bg-[var(--paper)]/95 border border-[var(--line)] rounded-full text-[10px] tracking-[0.22em] uppercase">Featured · Two-Story</div>
-        <div class="absolute bottom-5 left-5 text-[var(--paper)]">
-          <div class="font-display font-bold uppercase text-[24px] lg:text-[30px] leading-tight">Full External Render</div>
-          <div class="text-[10px] tracking-[0.22em] uppercase opacity-80 mt-1">Perth Hills · Renovation</div>
-        </div>
-      </div>
-      <div class="col-span-6 md:col-span-4 img-wrap img-overlay img-frame rounded-[6px] relative">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
+      <figure class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/5] relative">
+        <img src="assets/2025-12-02%20(3).webp" alt="Side elevation render with natural light" />
+        <figcaption class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">
+          <span class="block text-[var(--gold-light)] mb-0.5">Side Elevation</span>
+          Smooth Set · Perth Metro
+        </figcaption>
+      </figure>
+      <figure class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/5] relative">
+        <img src="assets/2025-12-02.webp" alt="Single-story render with pool" />
+        <figcaption class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">
+          <span class="block text-[var(--gold-light)] mb-0.5">External Render</span>
+          Pool House · 2025
+        </figcaption>
+      </figure>
+      <figure class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/5] relative">
         <img src="assets/471163223_901733978611291_84696361062447292_n.jpg" alt="The Real Plastering team on the scaffolding" />
-        <div class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">On the Tools</div>
-      </div>
-      <div class="col-span-6 md:col-span-4 img-wrap img-overlay img-frame rounded-[6px] relative">
-        <img src="assets/2025-12-02.webp" alt="Single-story render with pool construction" />
-        <div class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">Pool House · 2025</div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-12 gap-4 lg:gap-5 mt-4 lg:mt-5">
-      <div class="col-span-6 md:col-span-4 img-wrap img-overlay img-frame rounded-[6px] aspect-[4/3] relative">
-        <img src="assets/2025-12-02%20(2).webp" alt="Balcony interior render" />
-        <div class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">Outdoor Living</div>
-      </div>
-      <div class="col-span-6 md:col-span-4 img-wrap img-overlay img-frame rounded-[6px] aspect-[4/3] relative">
+        <figcaption class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">
+          <span class="block text-[var(--gold-light)] mb-0.5">On the Tools</span>
+          The Real Plastering Crew
+        </figcaption>
+      </figure>
+      <figure class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/5] relative">
         <img src="assets/2020-11-10%20(1).webp" alt="Modern home build with scaffold" />
-        <div class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">Coastal Build</div>
-      </div>
-      <div class="col-span-12 md:col-span-4 img-wrap img-overlay img-frame rounded-[6px] aspect-[4/3] relative">
+        <figcaption class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">
+          <span class="block text-[var(--gold-light)] mb-0.5">Coastal Build</span>
+          Full External · 2020
+        </figcaption>
+      </figure>
+      <figure class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/5] relative">
+        <img src="assets/2025-12-02%20(2).webp" alt="Balcony interior render" />
+        <figcaption class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">
+          <span class="block text-[var(--gold-light)] mb-0.5">Outdoor Living</span>
+          Balcony · Render &amp; Set
+        </figcaption>
+      </figure>
+      <figure class="img-wrap img-overlay img-frame rounded-[6px] aspect-[4/5] relative">
         <img src="assets/unnamed%20(1).webp" alt="Workers rendering a long boundary wall" />
-        <div class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">Boundary Walls</div>
-      </div>
+        <figcaption class="absolute bottom-3 left-3 text-[10px] tracking-[0.22em] uppercase text-[var(--paper)]">
+          <span class="block text-[var(--gold-light)] mb-0.5">Boundary Walls</span>
+          Acrylic Render
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -750,6 +805,7 @@
         <div class="text-[11px] tracking-[0.28em] uppercase text-[var(--muted)] flex items-center gap-3">
           <span class="sec-num text-[14px]">05 / 06</span>
           <span class="w-10 h-px bg-[var(--gold)]"></span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--clay)]"></span>
           Meet the Team
         </div>
         <h2 class="font-display font-black uppercase text-[44px] lg:text-[64px] leading-[0.95] mt-4">
@@ -801,6 +857,7 @@
         <div class="text-[11px] tracking-[0.28em] uppercase text-[var(--muted)] flex items-center gap-3">
           <span class="sec-num text-[14px]">06 / 06</span>
           <span class="w-10 h-px bg-[var(--gold)]"></span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--clay)]"></span>
           Real Reviews from Real Customers
         </div>
         <h2 class="font-display font-black uppercase text-[44px] lg:text-[64px] leading-[0.95] mt-4">
@@ -1247,6 +1304,25 @@
     </div>
   </div>
 </footer>
+
+<!-- =================== STICKY MOBILE CALL BAR =================== -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--ink)] border-t border-[var(--gold)]/40 shadow-[0_-12px_30px_-12px_rgba(11,11,12,0.45)]" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+  <div class="grid grid-cols-2 gap-0">
+    <a href="tel:+61422945207" class="flex items-center justify-center gap-2.5 py-3.5 text-[var(--paper)] font-display font-bold uppercase tracking-[0.1em] text-[13px] active:bg-[var(--ink-2)]">
+      <span class="w-8 h-8 rounded-full bg-[var(--gold)] text-[var(--ink)] flex items-center justify-center gold-pulse">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+      </span>
+      <span class="leading-none">
+        <span class="block text-[9px] tracking-[0.22em] uppercase text-[var(--gold-light)] opacity-90">Call Nick</span>
+        <span class="block text-[14px] mt-0.5">0422 945 207</span>
+      </span>
+    </a>
+    <a href="#enquire" class="flex items-center justify-center gap-2.5 py-3.5 bg-[var(--gold)] text-[var(--ink)] font-display font-bold uppercase tracking-[0.1em] text-[13px] active:brightness-95">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 4h16v16H4zM4 4l8 8 8-8"/></svg>
+      Free Quote
+    </a>
+  </div>
+</div>
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
