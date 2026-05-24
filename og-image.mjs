@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const url = process.argv[2] || 'http://localhost:3000';
+const url = process.argv[2] || 'http://localhost:3000/og-card.html';
 
 const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
 try {
